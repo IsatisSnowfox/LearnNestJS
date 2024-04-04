@@ -55,9 +55,17 @@ export class RecordingService {
         return reponse.data;
     }
 
-    async stop(resourceId: string, sid: string, mode: string): Promise<any> {
+    async stop(resourceId: string, sid: string, mode: string, channelName: string, uid: number): Promise<any> {
         const url = `https://api.agora.io/v1/apps/${this.appId}/cloud_recording/resourceid/${resourceId}/sid/${sid}/mode/${mode}/stop`;
-        await axios.post(url, {  });
+        let reponse = await axios.post(url, {
+            "cname": channelName,
+            "uid": uid,
+            "clientRequest": {
+                "async_stop": true // Détermine si la requête doit être asynchrone ou non
+            }
+        });
+
+        return reponse.data;
     }
 
     async query(resourceId: string, sid: string, mode: string): Promise<any> {

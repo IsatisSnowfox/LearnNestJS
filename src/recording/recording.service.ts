@@ -17,10 +17,10 @@ export class RecordingService {
         this.azureStorageContainerName = config.get<string>('AzureStorageAccount.containerName');
     }
 
-    async acquire(cname: string, uid: number): Promise<any> {
+    async acquire(channelName: string, uid: number): Promise<any> {
         const url = `https://api.agora.io/v1/apps/${this.appId}/cloud_recording/acquire`;
         const response = await axios.post(url, {
-            "cname": cname,
+            "cname": channelName,
             "uid": uid,
         });
         return response.data;

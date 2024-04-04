@@ -9,22 +9,40 @@ export class RecordingController {
     constructor(private readonly agoraService: RecordingService) {}
 
     @Post('acquire')
-    async acquire(): Promise<void> {
-        await this.agoraService.acquire();
+    async acquire(
+        @Query('channelName') channelName: string,
+        @Query('uid') uid: number
+    ): Promise<void> {
+        await this.agoraService.acquire(channelName, uid);
     }
 
     @Post('start')
-    async start(@Query('resourceId') resourceId: string, @Query('mode') mode: string): Promise<void> {
-        await this.agoraService.start(resourceId, mode);
+    async start(
+        @Query('resourceId') resourceId: string,
+        @Query('mode') mode: string,
+        @Query('channelName') channelName: string,
+        @Query('uid') uid: number
+    ): Promise<void> {
+        await this.agoraService.start(resourceId, mode, channelName, uid);
     }
 
     @Post('stop')
-    async stop(@Query('resourceId') resourceId: string, @Query('sid') sid: string, @Query('mode') mode: string): Promise<void> {
-        await this.agoraService.stop(resourceId, sid, mode);
+    async stop(
+        @Query('resourceId') resourceId: string,
+        @Query('sid') sid: string,
+        @Query('mode') mode: string,
+        @Query('channelName') channelName: string,
+        @Query('uid') uid: number
+    ): Promise<void> {
+        await this.agoraService.stop(resourceId, sid, mode, channelName, uid);
     }
 
     @Get('query')
-    async query(@Query('resourceId') resourceId: string, @Query('sid') sid: string, @Query('mode') mode: string): Promise<any> {
+    async query(
+        @Query('resourceId') resourceId: string,
+        @Query('sid') sid: string,
+        @Query('mode') mode: string
+    ): Promise<any> {
         return this.agoraService.query(resourceId, sid, mode);
     }
 }

@@ -11,9 +11,12 @@ export class RecordingService {
         this.appId = config.get<string>('agora.appId');
     }
 
-    async acquire(): Promise<any> {
+    async acquire(cname: string, uid: number): Promise<any> {
         const url = `https://api.agora.io/v1/apps/${this.appId}/cloud_recording/acquire`;
-        const response = await axios.post(url);
+        const response = await axios.post(url, {
+            "cname": cname,
+            "uid": uid,
+        });
         return response.data;
     }
 

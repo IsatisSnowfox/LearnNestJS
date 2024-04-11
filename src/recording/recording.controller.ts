@@ -13,7 +13,7 @@ export class RecordingController {
         @Query('channelName') channelName: string,
         @Query('uid') uid: number
     ): Promise<void> {
-        await this.agoraService.acquire(channelName, uid);
+        return await this.agoraService.acquire(channelName, uid);
     }
 
     @Post('start')

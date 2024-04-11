@@ -23,7 +23,7 @@ export class RecordingService {
             "cname": channelName,
             "uid": uid,
         });
-        return response.data;
+        return response.data?.resourceId;
     }
 
     async start(resourceId: string, mode: string, channelName: string, uid: number): Promise<any> {

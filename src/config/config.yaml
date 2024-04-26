@@ -25,6 +25,8 @@ logger:
 agora:
   appId: 'your-app-id'
   appCertificate: 'your-app-certificate'
+  customerKey: 'agora-customer-key'
+  customerSecret: 'agora-customer-secret'
 AzureStorageAccount:
   storageName: 'name-of-azure-storage'
   accessKey: 'access-key-of-azure-storage'
